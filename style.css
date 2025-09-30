@@ -1,0 +1,3 @@
+/* Legacy shim: styles moved to assets/css/monochrome.css */
+/* This file remains so older deployments referencing /style.css keep working. */
+@import url("/assets/css/monochrome.css");

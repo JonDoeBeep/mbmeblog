@@ -1,0 +1,26 @@
+---
+layout: page
+title: Blog
+description: Catch the latest dispatches from the monochrome desk.
+permalink: /blog/
+---
+
+<div class="row g-4">
+  {% if site.posts.size > 0 %}
+    {% for post in site.posts %}
+      <article class="col-12 col-md-6">
+        <div class="blog-card h-100 p-4 rounded-3">
+          <h2 class="h3 mb-1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+          <p class="text-muted small mb-3">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+          </p>
+          <p class="mb-0">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  {% else %}
+    <div class="col-12">
+      <p class="lead">No posts yet. Brew a fresh palette and come back soon.</p>
+    </div>
+  {% endif %}
+</div>

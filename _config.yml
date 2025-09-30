@@ -1,0 +1,40 @@
+title: THE DIGITAL NEWS
+subtitle: Monochrome Generator & caffeine-fueled dispatches
+description: Interactive monochrome palettes, animated SVG antics, and a freshly brewed blog for color-loving designers.
+author: Frank Lee Surprised
+email: 
+lang: en
+baseurl: ""
+url: ""
+permalink: /blog/:year/:month/:day/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+timezone: Etc/UTC
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: Frank Lee Surprised
+  - scope:
+      path: ""
+    values:
+      layout: default
+      body_class: ""
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor
