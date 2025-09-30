@@ -10,19 +10,20 @@ body_class: monochrome-app
 
 	<section class="range p-0 m-0">
 		<div class="row p-0 m-0">
-			<div class="cTabW">
+			<div class="row g-4">
 				<div id="tb0" class="cTab"></div>
 			</div>
 			<div class="cTabW">
-				<div id="tb1" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb2" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb3" class="cTab"></div>
-			</div>
-			<div class="cTabW">
+						<article class="col-md-4">
+							<a class="blog-card h-100 p-4 rounded-3" href="{{ post.url | relative_url }}">
+								<h3 class="h4 mb-1">{{ post.title }}</h3>
+								<p class="text-muted small mb-2">
+									<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+								</p>
+								<p class="mb-3">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+								<span class="blog-card-cta">Read full story</span>
+							</a>
+						</article>
 				<div id="tb4" class="cTab"></div>
 			</div>
 			<div class="cTabW">
@@ -30,6 +31,9 @@ body_class: monochrome-app
 			</div>
 			<div class="cTabW">
 				<div id="tb6" class="cTab"></div>
+			<div class="mt-4 text-center">
+				<a class="btn btn-outline-dark blog-preview-link" href="{{ '/blog/' | relative_url }}">Browse the full archive</a>
+			</div>
 			</div>
 			<div class="cTabW">
 				<div id="tb7" class="cTab"></div>

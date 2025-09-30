@@ -1,26 +1,104 @@
 ---
-layout: page
-title: Blog
+layout: default
+title: Blog Archive
 description: Catch the latest dispatches from the monochrome desk.
 permalink: /blog/
+body_class: monochrome-app blog-archive
 ---
 
-<div class="row g-4">
-  {% if site.posts.size > 0 %}
-    {% for post in site.posts %}
-      <article class="col-12 col-md-6">
-        <div class="blog-card h-100 p-4 rounded-3">
-          <h2 class="h3 mb-1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <p class="text-muted small mb-3">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
-          </p>
-          <p class="mb-0">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+<div class="container-lg mx-auto py-5">
+
+  <section class="range p-0 m-0">
+    <div class="row p-0 m-0">
+      {% for i in (0..11) %}
+        <div class="cTabW">
+          <div id="tb{{ i }}" class="cTab"></div>
         </div>
-      </article>
-    {% endfor %}
-  {% else %}
-    <div class="col-12">
-      <p class="lead">No posts yet. Brew a fresh palette and come back soon.</p>
+      {% endfor %}
     </div>
+    <div id="line"></div>
+  </section>
+
+  <section id="header" class="archive-header">
+    <h1>THE DIGITAL NEWS ARCHIVE</h1>
+  </section>
+
+  <section id="spacer01" class="row archive-meta">
+    <div class="col-4 text-start">Edition No. {{ site.posts | size | plus: 900000 }}</div>
+    <div class="col-4 text-center">{{ site.time | date: '%a, %b %d, %Y' }}</div>
+    <div class="col-4 text-end">{{ site.posts | size }} stories</div>
+  </section>
+
+  {% assign featured_post = site.posts.first %}
+  {% assign trailing_posts = site.posts | slice: 1, site.posts.size %}
+
+  <section class="archive-main row gy-4">
+    <div class="col-lg-8">
+      {% if featured_post %}
+        <article class="archive-feature p-4 p-md-5">
+          <p class="archive-kicker text-uppercase fw-semibold mb-2">Latest Edition</p>
+          <h2 class="display-6 fw-bold mb-3">{{ featured_post.title }}</h2>
+          <p class="text-muted small mb-4">
+            <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: '%B %d, %Y' }}</time>
+          </p>
+          <p class="lead">{{ featured_post.excerpt | strip_html | truncate: 240 }}</p>
+          <a class="btn btn-dark mt-4" href="{{ featured_post.url | relative_url }}">Read the full dispatch</a>
+        </article>
+      {% else %}
+        <div class="archive-empty newsItem min300">
+          <p class="lead mb-0">No stories yet. Brew a fresh palette and check back soon.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-lg-4">
+      <div class="row gy-4">
+        {% if trailing_posts.size > 0 %}
+          {% for post in trailing_posts %}
+            {% assign photo_id = '' %}
+            {% if forloop.index0 == 0 %}
+              {% assign photo_id = 'new1' %}
+            {% elsif forloop.index0 == 1 %}
+              {% assign photo_id = 'new2' %}
+            {% endif %}
+            <div class="col-12">
+              <a class="newsItem" href="{{ post.url | relative_url }}">
+                <div class="newsPhotoWrapper">
+                  <div class="newsPhoto{% if forloop.first %} min300{% endif %}"{% if photo_id != '' %} id="{{ photo_id }}"{% endif %}></div>
+                </div>
+                <h4>{{ post.title }}</h4>
+                <p class="mb-2 text-muted small">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+                </p>
+                <p class="mb-0">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-12">
+            <div class="newsItem min300 d-flex align-items-center">
+              <p class="lead mb-0">No additional stories in the archive yet.</p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if trailing_posts.size > 2 %}
+    <section class="archive-grid row gy-4 mt-2">
+      {% for post in trailing_posts offset:2 %}
+        <article class="col-md-6 col-lg-4">
+          <a class="blog-card h-100 p-4 rounded-3" href="{{ post.url | relative_url }}">
+            <h3 class="h5 mb-2">{{ post.title }}</h3>
+            <p class="text-muted small mb-2">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+            </p>
+            <p class="mb-3">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+            <span class="blog-card-cta">Continue reading</span>
+          </a>
+        </article>
+      {% endfor %}
+    </section>
   {% endif %}
+
 </div>

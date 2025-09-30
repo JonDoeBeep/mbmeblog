@@ -222,6 +222,7 @@ h3 {
 	cursor: pointer;
 	background-color: var(--lowC);
 	color: var(--highC);
+	text-decoration: none;
 
 	&.min300 {
 		min-height: 300px;
@@ -469,6 +470,72 @@ h3 {
 	}
 }
 
+.archive-meta {
+	font-weight: 600;
+}
+
+.archive-feature {
+	background-color: var(--textC);
+	color: var(--bgC);
+	border-radius: 12px;
+	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+	position: relative;
+	overflow: hidden;
+
+	.btn-dark {
+		background-color: var(--bgC);
+		color: var(--textC);
+		border: none;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+}
+
+.archive-kicker {
+	letter-spacing: 0.25em;
+	font-size: 0.75rem;
+}
+
+.archive-main .newsItem {
+	min-height: 0;
+}
+
+.archive-main .newsItem:hover,
+.archive-main .newsItem:focus-visible {
+	opacity: 0.95;
+}
+
+.archive-empty {
+	background-color: color-mix(in srgb, var(--midBgC) 15%, var(--bgC));
+	color: var(--textC);
+	border-radius: 12px;
+	padding: 3rem;
+	text-align: center;
+}
+
+.archive-grid {
+	border-top: 1px solid color-mix(in srgb, var(--textC) 10%, transparent);
+	padding-top: 2rem;
+}
+
+.blog-archive .site-header,
+.blog-archive .site-footer {
+	position: relative;
+}
+
+.blog-archive #header {
+	margin-top: 1rem;
+}
+
+.blog-archive .range {
+	margin-bottom: 2rem;
+}
+
+.blog-archive .archive-main {
+	margin-top: 2rem;
+}
+
 .site-footer {
 	border-top: 1px solid color-mix(in srgb, var(--textC) 15%, transparent);
 	color: var(--textC);
@@ -481,19 +548,40 @@ h3 {
 }
 
 .blog-card {
+	display: block;
 	background-color: var(--lowC);
 	color: var(--highC);
+	text-decoration: none;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 	border: 1px solid color-mix(in srgb, var(--textC) 10%, transparent);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 
-	&:hover {
+	&:hover,
+	&:focus-visible {
 		transform: translateY(-4px);
 		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+		opacity: 0.95;
 	}
+}
 
-	& a {
-		color: inherit;
-		text-decoration: none;
-	}
+.blog-card-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.75rem;
+}
+
+.blog-card-cta::after {
+	content: "→";
+	font-size: 0.85rem;
+}
+
+.blog-preview-link {
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	border-width: 2px;
 }
