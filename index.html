@@ -1,29 +1,25 @@
 ---
 layout: default
 title: Monochrome Generator
-description: Explore monochromatic palettes, animated stories, and the latest caffeine-fueled dispatches from THE DIGITAL NEWS.
-main_class: ""
-body_class: monochrome-app
 ---
 
 <div class="container-lg mx-auto py-5">
 
 	<section class="range p-0 m-0">
 		<div class="row p-0 m-0">
-			<div class="row g-4">
+			<div class="cTabW">
 				<div id="tb0" class="cTab"></div>
 			</div>
 			<div class="cTabW">
-						<article class="col-md-4">
-							<a class="blog-card h-100 p-4 rounded-3" href="{{ post.url | relative_url }}">
-								<h3 class="h4 mb-1">{{ post.title }}</h3>
-								<p class="text-muted small mb-2">
-									<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
-								</p>
-								<p class="mb-3">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-								<span class="blog-card-cta">Read full story</span>
-							</a>
-						</article>
+				<div id="tb1" class="cTab"></div>
+			</div>
+			<div class="cTabW">
+				<div id="tb2" class="cTab"></div>
+			</div>
+			<div class="cTabW">
+				<div id="tb3" class="cTab"></div>
+			</div>
+			<div class="cTabW">
 				<div id="tb4" class="cTab"></div>
 			</div>
 			<div class="cTabW">
@@ -31,9 +27,6 @@ body_class: monochrome-app
 			</div>
 			<div class="cTabW">
 				<div id="tb6" class="cTab"></div>
-			<div class="mt-4 text-center">
-				<a class="btn btn-outline-dark blog-preview-link" href="{{ '/blog/' | relative_url }}">Browse the full archive</a>
-			</div>
 			</div>
 			<div class="cTabW">
 				<div id="tb7" class="cTab"></div>
@@ -237,28 +230,6 @@ body_class: monochrome-app
 
 		</filter>
 
-	</svg>
+	</defs>
 
-	<section class="blog-preview container-lg py-5">
-		<h2 class="mb-4">Latest from the blog</h2>
-		<div class="row g-4">
-			{% assign recent_posts = site.posts | slice: 0, 3 %}
-			{% if recent_posts.size > 0 %}
-				{% for post in recent_posts %}
-					<article class="col-md-4">
-						<div class="blog-card h-100 p-4 rounded-3">
-							<h3 class="h4 mb-1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-							<p class="text-muted small mb-2">
-								<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
-							</p>
-							<p class="mb-0">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-						</div>
-					</article>
-				{% endfor %}
-			{% else %}
-				<div class="col-12">
-					<p class="lead">No posts yet. Stay tuned for upcoming dispatches.</p>
-				</div>
-			{% endif %}
-		</div>
-	</section>
+</svg>
