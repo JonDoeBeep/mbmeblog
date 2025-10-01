@@ -5,47 +5,7 @@ title: Monochrome Generator
 
 <div class="container-lg mx-auto py-5">
 
-	<section class="range p-0 m-0">
-		<div class="row p-0 m-0">
-			<div class="cTabW">
-				<div id="tb0" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb1" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb2" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb3" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb4" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb5" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb6" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb7" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb8" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb9" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb10" class="cTab"></div>
-			</div>
-			<div class="cTabW">
-				<div id="tb11" class="cTab"></div>
-			</div>
-		</div>
-		<div id="line"></div>
-	</section>
+	{% include range-strip.html %}
 
 	<section id="header">
 		<h1>THE DIGITAL NEWS</h1>
@@ -70,7 +30,7 @@ title: Monochrome Generator
 					</div>
 					<div id="header2" class="col-md-1"></div>
 					<div id="header3" class="col-md-5 p-4 p-md-3 d-flex text-center">
-						<h2 class="m-auto"></h2>
+						<h2 class="m-auto" data-color-headline></h2>
 					</div>
 				</div>
 
@@ -179,10 +139,6 @@ title: Monochrome Generator
 
 	</section>
 
-</div>
-
-<div id="resetWrapper">
-	<i id="reset" class="bi bi-arrow-repeat"></i>
 </div>
 
 <svg xmlns="http://www.w3.org/2000/svg" role="none" width="0" width="0">

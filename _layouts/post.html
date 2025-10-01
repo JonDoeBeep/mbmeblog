@@ -1,28 +1,94 @@
 ---
 layout: default
 ---
-<article class="post container-lg py-4">
-  <header class="mb-4">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta text-muted mb-0">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %d, %Y' }}</time>
-      {% if page.author %}&middot; {{ page.author }}{% elsif site.author %}&middot; {{ site.author }}{% endif %}
-    </p>
-    {% if page.excerpt %}
-      <p class="lead mt-3">{{ page.excerpt }}</p>
-    {% endif %}
-  </header>
-  <section class="post-content">
-    {{ content }}
+<div class="container-lg mx-auto py-5">
+  {% include range-strip.html %}
+
+  <section id="header">
+    <h1>THE DIGITAL NEWS</h1>
   </section>
-  <nav class="post-nav mt-5 d-flex justify-content-between">
-    {% if page.previous %}
-      <a class="prev" href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
-    {% else %}
-      <span></span>
-    {% endif %}
-    {% if page.next %}
-      <a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
-    {% endif %}
-  </nav>
-</article>
+
+  <section id="spacer01" class="row">
+    <div class="col-4 text-start">No.959094</div>
+    <div class="col-4 text-center"></div>
+    <div class="col-4 text-end">15&cent;</div>
+  </section>
+
+  <section id="main">
+    <div class="row">
+      <div class="col-md-9 pe-md-4">
+        <div id="headline" class="row p-0 p-md-4">
+          <div id="header1" class="col-md-6 p-4 pe-0">
+            <h3>
+              {{ page.title }}<br>
+              <sup class="d-block pt-5">
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %d, %Y' }}</time>
+                {% assign article_author = page.author | default: site.author %}
+                {% if article_author %}
+                  &middot; {{ article_author }}
+                {% endif %}
+              </sup>
+            </h3>
+          </div>
+          <div id="header2" class="col-md-1"></div>
+          <div id="header3" class="col-md-5 p-4 p-md-3 d-flex text-center">
+            <h2 class="m-auto" data-color-headline></h2>
+          </div>
+        </div>
+
+        {% if page.excerpt %}
+          <p class="page-lede lead px-2 px-md-0">{{ page.excerpt }}</p>
+        {% endif %}
+
+        <article class="page-body prose px-2 px-md-3 py-4">
+          {{ content }}
+        </article>
+
+        <nav class="post-nav newsItem mt-4 flex-md-row">
+          <div class="post-nav-prev">
+            {% if page.previous %}
+              <a class="news-link" href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
+              <div class="text-muted small">{{ page.previous.date | date: '%B %d, %Y' }}</div>
+            {% else %}
+              <span class="text-muted small">Start of the archive</span>
+            {% endif %}
+          </div>
+          <div class="post-nav-next text-md-end mt-4 mt-md-0">
+            {% if page.next %}
+              <a class="news-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
+              <div class="text-muted small">{{ page.next.date | date: '%B %d, %Y' }}</div>
+            {% else %}
+              <span class="text-muted small">Fresh ink coming soon</span>
+            {% endif %}
+          </div>
+        </nav>
+      </div>
+
+      <div class="col-md-3 pe-md-0">
+        <div class="row">
+          <div class="col-12 mb-3 mb-md-4">
+            <div class="newsItem">
+              <h4 class="mb-3">More stories</h4>
+              {% assign sibling_posts = site.posts | where_exp: 'post', 'post.url != page.url' %}
+              <ul class="news-list list-unstyled mb-0">
+                {% for post in sibling_posts limit: 3 %}
+                  <li class="mb-3">
+                    <a class="fw-semibold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <div class="text-muted small">{{ post.date | date: '%B %d, %Y' }}</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 mb-3 mb-md-4">
+            <div class="newsItem min300">
+              <h5 class="mb-3">Back to the generator</h5>
+              <p class="mb-4">Need a fresh monochrome palette? The front page generator has you covered.</p>
+              <a class="news-link fw-semibold text-uppercase small" href="{{ '/' | relative_url }}">Visit the front page →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

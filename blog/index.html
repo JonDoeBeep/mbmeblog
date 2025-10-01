@@ -3,20 +3,32 @@ layout: page
 title: Blog
 description: Catch the latest dispatches from the monochrome desk.
 permalink: /blog/
+lede: Stay up to date with the latest caffeine-fueled reports and palette experiments.
 ---
 
-{% if site.posts.size > 0 %}
-  <ul class="list-unstyled">
-    {% for post in site.posts %}
-      <li class="mb-5">
-        <h2 class="h3 mb-1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        <p class="text-muted small mb-2">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
-        </p>
-        <p class="mb-0">{{ post.excerpt | strip_html | truncate: 180 }}</p>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p class="lead">No posts yet. Brew a fresh palette and check back soon.</p>
-{% endif %}
+<section class="blog-archive">
+  {% if site.posts.size > 0 %}
+    <div class="row g-4">
+      {% for post in site.posts %}
+        <article class="col-12 col-md-6 col-lg-4">
+          <a class="newsItem blogItem h-100" href="{{ post.url | relative_url }}">
+            <div class="newsPhotoWrapper">
+              <div class="newsPhoto blogPhoto"></div>
+            </div>
+            <h4 class="mb-1">{{ post.title }}</h4>
+            <p class="text-muted small mb-2">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+            </p>
+            <p class="mb-0">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+            <span class="news-link d-inline-flex align-items-center gap-2 mt-3">Read dispatch →</span>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="newsItem min300 text-center">
+      <h4 class="mb-3">No dispatches yet</h4>
+      <p class="mb-0">Brew a fresh palette and check back soon for the next digital edition.</p>
+    </div>
+  {% endif %}
+</section>

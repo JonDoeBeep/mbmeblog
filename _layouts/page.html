@@ -1,9 +1,68 @@
 ---
 layout: default
 ---
-<section class="page container-lg py-4">
-  <h1 class="mb-4">{{ page.title }}</h1>
-  <div class="page-body">
-    {{ content }}
-  </div>
-</section>
+<div class="container-lg mx-auto py-5">
+  {% include range-strip.html %}
+
+  <section id="header">
+    <h1>THE DIGITAL NEWS</h1>
+  </section>
+
+  <section id="spacer01" class="row">
+    <div class="col-4 text-start">No.959094</div>
+    <div class="col-4 text-center"></div>
+    <div class="col-4 text-end">15&cent;</div>
+  </section>
+
+  <section id="main">
+    <div class="row">
+      <div class="col-md-9 pe-md-4">
+        <div id="headline" class="row p-0 p-md-4">
+          <div id="header1" class="col-md-6 p-4 pe-0">
+            <h3>
+              {{ page.title }}<br>
+              <sup class="d-block pt-5">{{ page.description | default: site.description }}</sup>
+            </h3>
+          </div>
+          <div id="header2" class="col-md-1"></div>
+          <div id="header3" class="col-md-5 p-4 p-md-3 d-flex text-center">
+            <h2 class="m-auto" data-color-headline></h2>
+          </div>
+        </div>
+
+        {% if page.lede %}
+          <p class="page-lede lead px-2 px-md-0">{{ page.lede }}</p>
+        {% endif %}
+
+        <div class="page-body prose px-2 px-md-3 py-4">
+          {{ content }}
+        </div>
+      </div>
+
+      <div class="col-md-3 pe-md-0">
+        <div class="row">
+          <div class="col-12 mb-3 mb-md-4">
+            <div class="newsItem">
+              <h4 class="mb-3">Latest dispatches</h4>
+              <ul class="news-list list-unstyled mb-0">
+                {% for post in site.posts limit: 3 %}
+                  <li class="mb-3">
+                    <a class="fw-semibold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <div class="text-muted small">{{ post.date | date: '%B %d, %Y' }}</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 mb-3 mb-md-4">
+            <div class="newsItem min300">
+              <h5 class="mb-3">Looking for more?</h5>
+              <p class="mb-4">Browse every edition of THE DIGITAL NEWS, lovingly typeset in monochrome.</p>
+              <a class="news-link fw-semibold text-uppercase small" href="{{ '/blog/' | relative_url }}">Visit the archive →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
