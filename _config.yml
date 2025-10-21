@@ -15,7 +15,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-include-cache
-
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 collections:
   posts:
     output: true
